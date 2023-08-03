@@ -25,7 +25,7 @@ instale os pacotes do projeto com o comando npm install - sera criada a pasta no
 ( Também é possivel instalar atraves do yarn)
 
 
-use o comando npm run dev - vai dar start na aplicação.
+use o comando npm run dev (vite) / npm start(create react  app) - vai dar start na aplicação.
 */
 
 /*
