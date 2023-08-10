@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import styles from "styled-components";
 
 export const Container = styled.div`
@@ -34,12 +33,5 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  background-color: #0097ff;
-  border: none;
-  height: 40px;
-  border-radius: 5px;
-
-  li {
-    list-style: none;
-  }
+  background-color: ${(props) => (props.finished ? "#0097ff" : "#e4e4e4")};
 `;

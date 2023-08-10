@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import styles from "styled-components";
 
 export const Container = styled.div`
@@ -31,15 +30,4 @@ export const Button = styled.button`
   font-weight: 600;
   font-size: 17px;
   cursor: pointer;
-`;
-
-export const ListItem = styled.div`
-  background-color: #0097ff;
-  border: none;
-  height: 40px;
-  border-radius: 5px;
-
-  li {
-    list-style: none;
-  }
 `;
