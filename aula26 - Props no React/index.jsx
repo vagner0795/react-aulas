@@ -1,40 +1,46 @@
 /*
- PROPS - Abreviação de PROPRIEDADES
+  DELETANDO ITENS
 
-  propriedades são formas de alterar os elementos da tela de acordo com as 
-  ações do usuário.
+  para deletar um item da nossa lista vamos usar o metodo filter()
+  criamos uma função, dentro dessa função percorremos o array com os itens da lista e retornamos 
+  os itens com ID diferente do item que vamos remover.
 
-  ex: podemos criar uma props para quando o botão for clicado trocar 
-  o background do botão.
-
-  podemos criar uma propriedade para definir a altura, largura ou
-  cor do componente adicionando o atributo dentro do componente importado 
-
-  em nosso projeto usaremos o seguinte codigo:
-
-  ${(props) => (props.finished ? "#0097ff" : "#e4e4e4")
-
-  se a propriedade finished for true, a cor do componente é azul. se a propriedade for false
-  a cor do componente é branco.
-
-  
+  essa função será adicionada ao icone da lixeira e chamada através do evento onClick
+  toda vez que o icone de lixeira for clicado a função vai verificar o id e remover o item da tela.
 */
 
 import React, { useState } from "react";
-import { v4 as uiidv4 } from "uuid";
-import { Container, Button, Input, ToDoList, ListItem } from "./styles";
-import { FcFullTrash } from "react-icons/fc";
+import { v4 as uuidv4 } from "uuid";
+import { Container, ToDoList, Input, Button, ListItem } from "./styles";
+import { FcFullTrash, FcCheckmark } from "react-icons/fc";
 
 function App() {
   const [list, setList] = useState([
-    { id: uiidv4(), task: "Lavar Louça", finished: true },
+    { id: uuidv4(), task: "Lavar Louça", finishedTask: true },
   ]);
+  const [inputTask, setInputTask] = useState("");
 
   function inputMudou(event) {
     setInputTask(event.target.value);
   }
   function butaoClicado() {
-    setList([...list, { id: uuidv4(), task: inputTask, finished: false }]);
+    setList([...list, { id: uuidv4(), task: inputTask, finishedTask: false }]);
+  }
+
+  function finishTask(id) {
+    const newList = list.map((itemList) =>
+      itemList.id === id
+        ? { ...itemList, finishedTask: !itemList.finishedTask }
+        : itemList
+    );
+
+    setList(newList);
+  }
+
+  function deleteTask(id) {
+    const newList = list.filter((item) => item.id !== id);
+
+    setList(newList);
   }
 
   return (
@@ -48,12 +54,11 @@ function App() {
         <Button onClick={butaoClicado}>Adicionar</Button>
         <ul>
           {list.map((item) => (
-            <>
-              <ListItem>
-                <li key={item.id}>{item.task}</li>
-                <FcFullTrash />
-              </ListItem>
-            </>
+            <ListItem isfinished={item.finishedTask} key={item.id}>
+              <FcCheckmark onClick={() => finishTask(item.id)} />
+              <li>{item.task}</li>
+              <FcFullTrash onClick={() => deleteTask(item.id)} />
+            </ListItem>
           ))}
         </ul>
       </ToDoList>
