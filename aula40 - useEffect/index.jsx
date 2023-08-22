@@ -28,9 +28,9 @@ const Home = () => {
       } = await api.get("/movie/popular/");
 
       setMovie(results[3]);
-      console.log(results[1].title);
-      console.log(results[1].overview);
-      console.log(results[1].backdrop_path);
+      console.log(results[1].title); // acessando o titulo do filme
+      console.log(results[1].overview); // acessando a descrição
+      console.log(results[1].backdrop_path); // acessando a imagem
     }
 
     getMovies();
