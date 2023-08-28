@@ -42,8 +42,6 @@
 
 */
 
-/* eslint-disable react/prop-types */
-
 import api from "../../services/api";
 import {
   Background,
